@@ -20,18 +20,32 @@ can't remember the other cases.  To find the solution, simply create an array of
 follows (this assumes you are inside JAVA):
 
 // setup the segments in the correct order
+
 Segment[] segments = {
+
     new Segment(new String[]{ "f", "F" }),
+    
     new Segment(new String[]{ "o", "O", "0"}),
+    
     new Segment(new String[]{ "o", "O", "0"}),
+    
     new Segment(new String[]{ "-", true}), // true means optional, test with and without
+    
     new Segment(new String[]{ "bar"}), // bar has no variants, hence the one entry
+    
 }
 
+
 // create an instance of the KeystoreCracker
+
 KeystoreCracker cracker = new KeystoreCracker(segments, "test_keystore.ppk");
+
 // default is 100 - after every X attempts (where X is the update interval), let the user know
+
 //                  how many password variants have been attempted
+
 cracker.setUpdateInterval(10);
+
 // get to work and find the password!!
+
 cracker.crackPassword();
