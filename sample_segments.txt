@@ -1,0 +1,13 @@
+t, T
+e, E
+s, S, 5
+t, T
+ -
+p, P
+a, A, @    
+s, S, 5
+s, S, 5
+w, W
+o, O, 0
+r, R
+d, D

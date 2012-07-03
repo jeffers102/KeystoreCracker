@@ -11,4 +11,20 @@ public class Segment {
         this.values = values;
         this.optional = optional;
     }
+
+    private String getValuesString() {
+        String retVal = "";
+        for (int i = 0; i < values.length; i++) {
+            retVal += values[i];
+            if (i + 1 < values.length) {
+                retVal += ", ";
+            }
+        }
+
+        return retVal;
+    }
+
+    public String toString() {
+        return "Values = " + getValuesString() + "\nOptional = " + optional;
+    }
 }
