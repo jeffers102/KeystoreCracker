@@ -16,36 +16,23 @@ Usage:
 Let's say that you sometimes swap the number zero and the letter O and sometimes use
 caps and sometimes a hyphen to separate words.  In this case, let's assume that your password
 is some form of "foobar".  You remember that the "bar" section is typed just like that, but
-can't remember the other cases.  To find the solution, simply create an array of Segments as
-follows (this assumes you are inside JAVA):
+can't remember the other cases.  To find the solution, simply create a file with the segments in
+order.  For optional segments, preface the line with a blank space.  For instance, in the scenario
+above, your file would like this:
 
-// setup the segments in the correct order
+f, F
+o, O, 0
+o, O, 0
+ -
+bar
 
-Segment[] segments = {
+Notice that the line with the hypen, has a blank space, so that segment is optional.  This would try
+all combinations, such as:
 
-    new Segment(new String[]{ "f", "F" }),
-    
-    new Segment(new String[]{ "o", "O", "0"}),
-    
-    new Segment(new String[]{ "o", "O", "0"}),
-    
-    new Segment(new String[]{ "-", true}), // true means optional, test with and without
-    
-    new Segment(new String[]{ "bar"}), // bar has no variants, hence the one entry
-    
-}
+foo-bar, F0Obar, F00-bar, etc
 
+Now that the file is setup, you just need to execute the program using either the class or the JAR
+(this assumes that your keystore and segment file are in the current directory):
 
-// create an instance of the KeystoreCracker
-
-KeystoreCracker cracker = new KeystoreCracker(segments, "test_keystore.ppk");
-
-// default is 100 - after every X attempts (where X is the update interval), let the user know
-
-//                  how many password variants have been attempted
-
-cracker.setUpdateInterval(10);
-
-// get to work and find the password!!
-
-cracker.crackPassword();
+java com.goldenhalodesign.tools.KeystoreCracker.KeystoreCracker -k test_keystore.ppk -s sample_segments.txt
+java -classpath bin/KeystoreCracker.jar com.goldenhalodesign.tools.KeystoreCracker.KeystoreCracker -k test_keystore.ppk -s sample_segments.txt
